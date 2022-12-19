@@ -27,6 +27,8 @@ if ($url === 'login') {
     if ($method === 'POST') {
         $authController->login($_POST);
     }
+    var_dump($_POST);
+
 }
 
 if ($url === 'registration') {
@@ -39,6 +41,7 @@ if ($url === 'registration') {
     if ($method === 'POST') {
         $authController->register($_POST);
     }
+
 }
 
 if ($url === 'hikes') {

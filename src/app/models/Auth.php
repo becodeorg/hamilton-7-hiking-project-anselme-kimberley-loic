@@ -21,14 +21,13 @@ class Auth extends Database
     public function find(string $nickname): array
     {
         if (!$user = $this->query(
-            "SELECT * FROM users WHERE username = ?",
+            "SELECT * FROM users WHERE nickname = ?",
             [
                 $nickname,
             ]
         )->fetch()) {
             throw new Exception('Failed login attempt : connection error.');
         }
-
         return $user;
     }
 }
