@@ -7,7 +7,7 @@ class HikesController
 
     public function __construct()
     {
-        $this->hikeModel = new Product();
+        $this->hikeModel = new Hikes();
     }
 
     public function index(): void

@@ -18,12 +18,12 @@ class AuthController
         }
 
         $nickname = htmlspecialchars($input['nickname']);
-        $nickname = htmlspecialchars($input['firstname']);
-        $nickname = htmlspecialchars($input['lastname']);
+        $firstname = htmlspecialchars($input['firstname']);
+        $lastname = htmlspecialchars($input['lastname']);
         $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
         $password = password_hash($input['password'], PASSWORD_DEFAULT);
 
-        $this->authModel->create($nickname, $email, $password);
+        $this->authModel->create($nickname, $email, $password, $firstname, $lastname);
 
         $id = $this->authModel->getLastInsertId();
 
@@ -39,9 +39,9 @@ class AuthController
 
     public function showRegistrationForm(): void
     {
-        include 'views/includes/header.view.php';
-        include 'views/registration.view.php';
-        include 'views/includes/footer.view.php';
+        include 'app/views/layout/head.view.php';
+        include 'app/views/Registration.view.php';
+        include 'app/views/layout/footer.view.php';
     }
 
     public function login(array $input)

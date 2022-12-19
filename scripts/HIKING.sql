@@ -1,4 +1,4 @@
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
                          `uid` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                          `email` varchar(50) UNIQUE,
                          `nickname` varchar(50) UNIQUE,
@@ -8,7 +8,7 @@ CREATE TABLE `Users` (
                          `isAdmin` boolean DEFAULT false
 );
 
-CREATE TABLE `Hikes` (
+CREATE TABLE `hikes` (
                          `hid` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                          `name` varchar(50) NOT NULL,
                          `dateHike` TIMESTAMP,
@@ -20,19 +20,19 @@ CREATE TABLE `Hikes` (
                          `userId` INT NOT NULL
 );
 
-CREATE TABLE `HikeTag` (
+CREATE TABLE `hikeTag` (
                            `tagHikeId` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                            `hikeId` INT,
                            `tagId` INT
 );
 
-CREATE TABLE `Tags` (
+CREATE TABLE `tags` (
                         `tid` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                         `name` varchar(50)
 );
 
-ALTER TABLE `Hikes` ADD FOREIGN KEY (`userId`) REFERENCES `Users` (`uid`);
+ALTER TABLE `hikes` ADD FOREIGN KEY (`userId`) REFERENCES `users` (`uid`);
 
-ALTER TABLE `HikeTag` ADD FOREIGN KEY (`tagId`) REFERENCES `Tags` (`tid`);
+ALTER TABLE `hikeTag` ADD FOREIGN KEY (`tagId`) REFERENCES `tags` (`tid`);
 
-ALTER TABLE `HikeTag` ADD FOREIGN KEY (`hikeId`) REFERENCES `Hikes` (`hid`);
+ALTER TABLE `hikeTag` ADD FOREIGN KEY (`hikeId`) REFERENCES `hikes` (`hid`);
