@@ -50,6 +50,5 @@
             </ul>
         </div>
     </div>
-    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_SwKPCDD0fy.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player><body>
 </nav>
 
