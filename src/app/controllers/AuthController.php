@@ -18,17 +18,17 @@ class AuthController
         }
 
         $nickname = htmlspecialchars($input['nickname']);
-        $nickname = htmlspecialchars($input['firstname']);
-        $nickname = htmlspecialchars($input['lastname']);
+        $firstname = htmlspecialchars($input['firstname']);
+        $lastname = htmlspecialchars($input['lastname']);
         $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
         $password = password_hash($input['password'], PASSWORD_DEFAULT);
 
-        $this->authModel->create($nickname, $email, $password);
+        $this->authModel->create($nickname, $email, $password, $firstname, $lastname);
 
-        $id = $this->authModel->getLastInsertId();
+        $uid = $this->authModel->getLastInsertId();
 
         $_SESSION['user'] = [
-            'id' => $id,
+            'uid' => $uid,
             'nickname' => $nickname,
             'email' => $email
         ];
@@ -39,30 +39,29 @@ class AuthController
 
     public function showRegistrationForm(): void
     {
-        include 'views/includes/header.view.php';
-        include 'views/registration.view.php';
-        include 'views/includes/footer.view.php';
+        include 'app/views/layout/head.view.php';
+        include 'app/views/Registration.view.php';
+        include 'app/views/layout/footer.view.php';
     }
 
-    public function login(array $input)
+    public function login(array $input): void
     {
-        if (empty($input) || empty($input['username']) || empty($input['password'])) {
+        if (empty($input) || empty($input['nickname']) || empty($input['password'])) {
             throw new Exception('Form data not validated.');
         }
 
         // Sanitize/validate input
-        $username = htmlspecialchars($input['username']);
+        $nickname = htmlspecialchars($input['nickname']);
         $password = htmlspecialchars($input['password']);
 
-        $user = $this->authModel->find($username);
+        $user = $this->authModel->find($nickname);
 
         if (!password_verify($password, $user['password'])) {
             throw new Exception("Failed login attempt : wrong password");
         }
 
         $_SESSION['user'] = [
-            "id" => $user["id"],
-            'username' => $user['username'],
+            'nickname' => $user['nickname'],
             'email' => $user['email']
         ];
 
@@ -71,17 +70,17 @@ class AuthController
         header('location: /');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(): void
     {
         include 'app/views/layout/head.view.php';
-        include 'app/views/login.view.php';
+        include 'app/views/Login.view.php';
         include 'app/views/layout/footer.view.php';
     }
 
-    public function logout()
+    public function logout(): void
     {
         unset($_SESSION['user']);
 
-        header('location: /');
+        //header('location: /');
     }
 }
