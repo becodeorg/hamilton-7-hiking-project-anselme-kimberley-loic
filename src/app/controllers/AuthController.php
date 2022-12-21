@@ -62,7 +62,8 @@ class AuthController
 
         $_SESSION['user'] = [
             'nickname' => $user['nickname'],
-            'email' => $user['email']
+            'email' => $user['email'],
+            'uid' => $user['uid']
         ];
 
         // Then, we redirect to the home page
