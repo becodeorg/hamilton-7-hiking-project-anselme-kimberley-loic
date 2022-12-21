@@ -1,5 +1,5 @@
 <?php if (!empty($_SESSION['user'])): ?>
-    <h2 class="text-center">Hello, <?= $_SESSION['user']['nickname'] ?> !</h2>
+    <h2 class="text-center text-xl mt-5">Hello, <?= $_SESSION['user']['nickname'] ?> !</h2>
 <?php endif; ?>
 <div class="lottie-mountain mb-6">
     <lottie-player class="justify-center" src="./assets/images/lf30_editor_xbszatmf.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="p-8">
                                     <h5 class="uppercase tracking-wide text-brown-hike text-sm font-semibold">Hike</h5>
-                                    <p href="/singlehike?code=<?= $product['hid']; ?>" class="block mt-2 text-lg leading-tight font-medium text-black"><?php echo $product['name'] . ' / '. $product['distance'] .'km' ?></p>
+                                    <p class="block mt-2 text-lg leading-tight font-medium text-black"><?php echo $product['name'] . ' / '. $product['distance'] .'km' ?></p>
                                     <p class="hike_preview-description mt-2 text-gray-500"><?= $product['description'] ?></p>
                                 </div>
                             </div>

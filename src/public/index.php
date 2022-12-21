@@ -20,28 +20,22 @@ if ($url === '/' || $url === '') {
 
 if ($url === 'login') {
     $authController = new AuthController();
-
     if ($method === 'GET') {
         $authController->showLoginForm();
     }
-
     if ($method === 'POST') {
         $authController->login($_POST);
     }
-
 }
 
 if ($url === 'registration') {
     $authController = new AuthController();
-
     if ($method === 'GET') {
         $authController->showRegistrationForm();
     }
-
     if ($method === 'POST') {
         $authController->register($_POST);
     }
-
 }
 
 if ($url === 'hikes') {
@@ -61,27 +55,21 @@ if ($url === 'logout') {
 }
 
 if ($url === "addhike") {
-
     $hikesController = new HikesController();
-
     if ($method === 'GET') {
         $hikesController->showAddHike();
     }
-
     if ($method === 'POST') {
         $hikesController->addHike($_POST);
     }
-
 }
 
-// go to the confirm delete page
 if ($url === "deletehike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();
     $hikesController->showDeleteHike($code);
 }
 
-// delete the single hike
 if ($url === "deletinghike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();

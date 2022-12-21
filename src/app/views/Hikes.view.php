@@ -1,4 +1,10 @@
-<body>
+<?php if (!empty($_SESSION['user'])): ?>
+    <div class="flex justify-center items-center mt-5">
+        <a href="/addhike">
+            <p class="text-lg leading-tight font-medium text-black underline hover:text-brown-hike"> <span class="text-2xl">+</span> Add Hike</p>
+        </a>
+    </div>
+<?php endif; ?>
 <div class="lottie-mountain">
     <lottie-player class="justify-center" src="./assets/images/lf30_editor_rm4y2yra.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
 </div>
