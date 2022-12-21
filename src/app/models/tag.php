@@ -7,6 +7,11 @@ class Tag extends Database
             return $this->query('SELECT name FROM `tags`')
         ->fetchall();
         }
+    } 
+        catch (Exception $e) {
+        echo $e->getMessage();
+        return [];
+    }
     }
 }
 
