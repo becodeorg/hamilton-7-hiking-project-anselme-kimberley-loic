@@ -1,3 +1,6 @@
+<div class="lottie-mountain mb-6">
+    <lottie-player class="justify-center" src="./assets/images/lf30_editor_dp7uqidq.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
+</div>
 <div class="flex justify-center">
 <form class="flex flex-col w-6/12 content-center justify-center m" method="post" action="registration">
     <div class="mb-6">

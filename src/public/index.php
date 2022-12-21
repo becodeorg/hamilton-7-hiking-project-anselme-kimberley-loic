@@ -75,6 +75,21 @@ if ($url === "addhike") {
 
 }
 
+if ($url === "updatehike") {
+    $code = $_GET['code'];
+    $hikesController = new HikesController();
+
+    if ($method === 'GET') {
+
+        $hikesController->showUpdateHike($code);
+    }
+
+    if ($method === 'POST') {
+        $hikesController->updateHike($_POST);
+    }
+
+}
+
 if ($url === "deletehike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();
