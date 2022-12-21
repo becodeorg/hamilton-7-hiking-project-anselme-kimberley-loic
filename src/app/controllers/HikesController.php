@@ -118,9 +118,10 @@ class HikesController
         $elevationGain = $input['elevationGain'];
         $description = htmlspecialchars($input['description']);
         $hid = $_GET['code'];
+        $update = date('Y-m-d H:i:s');
 
 
-        $this->hikeModel->updatingHike($name, $distance, $duration, $elevationGain, $description, $hid);
+        $this->hikeModel->updatingHike($name, $distance, $duration, $elevationGain, $description, $update ,$hid);
 
         http_response_code(302);
         header('location: /hikes');
