@@ -1,5 +1,6 @@
 @tailwind base;
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
 /* Firefox */
 * {
     scrollbar-width: thin;
