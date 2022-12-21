@@ -78,7 +78,7 @@ class Hikes extends Database
         }
     }
 
-    public function removeHike(string $code): void
+    public function removeHike(string $code): array|false
     {
         try {
             $this->query(
@@ -88,7 +88,8 @@ class Hikes extends Database
                 ]
             )->fetch();
         } catch (Exception $e) {
-            $e->getMessage();
+            echo $e->getMessage();
+            return [];
         }
     }
 }

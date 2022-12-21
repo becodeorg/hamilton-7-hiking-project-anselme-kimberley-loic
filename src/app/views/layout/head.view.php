@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>HIKING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <link href="/styles/output.css" type="text/css" rel="stylesheet">
+    <link href="styles/output.css" type="text/css" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="#" class="flex items-center z-10">
+        <a href="/" class="flex items-center z-10">
             <img src="assets/images/montagne.png" class="h-6 mr-3 sm:h-9" alt="Logo" />
             <span class="self-center text-xl font-semibold whitespace-nowrap">HIKING</span>
         </a>
@@ -41,9 +41,21 @@
                 <li>
                     <a href="/hikes" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Hikes</a>
                 </li>
+                <?php if (empty($_SESSION['user'])): ?>
                 <li>
                     <a href="/login" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Login</a>
                 </li>
+                <?php else: ?>
+                    <li>
+                        <a href="/myhikes" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">My Hikes</a>
+                    </li>
+                    <li>
+                        <a href="/profil" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">My Profil</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Logout</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

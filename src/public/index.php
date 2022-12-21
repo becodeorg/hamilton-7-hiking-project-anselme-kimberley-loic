@@ -28,7 +28,6 @@ if ($url === 'login') {
     if ($method === 'POST') {
         $authController->login($_POST);
     }
-    var_dump($_POST);
 
 }
 
@@ -75,12 +74,14 @@ if ($url === "addhike") {
 
 }
 
+// go to the confirm delete page
 if ($url === "deletehike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();
     $hikesController->showDeleteHike($code);
 }
 
+// delete the single hike
 if ($url === "deletinghike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();
