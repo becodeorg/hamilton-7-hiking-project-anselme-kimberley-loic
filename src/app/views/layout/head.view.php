@@ -36,13 +36,13 @@
             </div>
             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                 <li>
-                    <a href="#" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike" aria-current="page">Home</a>
+                    <a href="/" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Home</a>
                 </li>
                 <li>
                     <a href="#" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Hikes</a>
                 </li>
                 <li>
-                    <a href="#" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Login</a>
+                    <a href="/login" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Login</a>
                 </li>
             </ul>
         </div>

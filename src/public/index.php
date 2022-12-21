@@ -10,7 +10,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($url === '/' || $url === '') {
     $hikesController = new HikesController();
-    $hikesController->index();
+    $hikesController->showHome();
 }
 
 /*$routes = [
@@ -59,4 +59,18 @@ if ($url === 'singlehike') {
 if ($url === 'logout') {
     $authController  = new AuthController();
     $authController->logout();
+}
+
+if ($url === "addhike") {
+
+    $hikesController = new HikesController();
+
+    if ($method === 'GET') {
+        $hikesController->showAddHike();
+    }
+
+    if ($method === 'POST') {
+        $hikesController->addHike($_POST);
+    }
+
 }

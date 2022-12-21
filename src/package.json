@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "npx tailwindcss -i ressources/style/input.css -o public/styles/output.css"
+    "dev": "npx tailwindcss -i ressources/style/input.css -o public/styles/output.css --watch"
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
