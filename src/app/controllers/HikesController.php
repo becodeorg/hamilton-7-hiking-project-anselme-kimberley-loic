@@ -19,6 +19,19 @@ class HikesController
         include 'app/views/layout/footer.view.php';
     }
 
+
+    public function showHome(): void
+    {
+        // get the 5 longest
+        $products = $this->hikeModel->findLongest();
+        // get the last hike added
+        $productLast = $this->hikeModel->findLast();
+
+        include 'app/views/layout/head.view.php';
+        include 'app/views/Home.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+
     public function show(string $code): void
     {
         if (empty($code)) {
@@ -29,6 +42,15 @@ class HikesController
 
         include 'app/views/layout/head.view.php';
         include 'app/views/Hikes.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+
+    // showAddHike
+    public function showAddHike(): void
+    {
+
+        include 'app/views/layout/head.view.php';
+        include 'app/views/AddHike.view.php';
         include 'app/views/layout/footer.view.php';
     }
 }
