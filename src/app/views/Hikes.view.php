@@ -13,7 +13,7 @@
                 </div>
                 <div class="p-8">
                     <h5 class="uppercase tracking-wide text-brown-hike text-sm font-semibold">Hike</h5>
-                    <a href="/singlehike?code=<?= $hike['hid']; ?>" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"><?php echo $hike['name'] ?></a>
+                    <a href="/singlehike?code=<?= $hike['hid']; ?>" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"><?php echo $hike['name'] . ' / '. $hike['distance'] .'km' ?></a>
                     <p class="hike_preview-description mt-2 text-gray-500"><?= $hike['description'] ?></p>
                 </div>
             </div>
