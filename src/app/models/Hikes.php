@@ -78,15 +78,15 @@ class Hikes extends Database
         }
     }
 
-    public function removeHike(string $code)
+    public function removeHike(string $code): void
     {
         try {
             $this->query(
-                "DELETE FROM hikes WHERE hid = ?"
+                "DELETE FROM hikes WHERE hid = ?",
                 [
                     $code
                 ]
-            );
+            )->fetch();
         } catch (Exception $e) {
             $e->getMessage();
         }

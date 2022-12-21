@@ -74,3 +74,15 @@ if ($url === "addhike") {
     }
 
 }
+
+if ($url === "deletehike") {
+    $code = $_GET['code'];
+    $hikesController = new HikesController();
+    $hikesController->showDeleteHike($code);
+}
+
+if ($url === "deletinghike") {
+    $code = $_GET['code'];
+    $hikesController = new HikesController();
+    $hikesController->deleteHike($code);
+}
