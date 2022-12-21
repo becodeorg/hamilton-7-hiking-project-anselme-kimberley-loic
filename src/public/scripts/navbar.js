@@ -6,3 +6,4 @@ button.addEventListener('click', () => {
         menu.classList.toggle('animate-comeIn');
         menu.classList.toggle('hidden');
 });
+
