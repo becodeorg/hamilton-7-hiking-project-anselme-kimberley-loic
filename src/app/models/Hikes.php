@@ -5,7 +5,7 @@ class Hikes extends Database
     {
         try {
             return $this->query(
-                'SELECT hi.hid, hi.name, us.nickname, DATE_FORMAT(hi.dateHike, "%d %M %Y") as dateHike, hi.description FROM hikes hi LEFT JOIN users us ON hi.userId = us.uid LIMIT 40'
+                'SELECT hi.hid, hi.name, hi.distance, us.nickname, DATE_FORMAT(hi.dateHike, "%d %M %Y") as dateHike, hi.description FROM hikes hi LEFT JOIN users us ON hi.userId = us.uid LIMIT 40'
             )->fetchAll();
 
         } catch (Exception $e) {
@@ -19,7 +19,7 @@ class Hikes extends Database
     {
         try {
             return $this->query(
-                'SELECT hid, name, distance FROM `hikes` order by distance DESC LIMIT 5'
+                'SELECT hid, name, distance, description FROM `hikes` order by distance DESC LIMIT 4'
             )->fetchAll();
 
         } catch (Exception $e) {
@@ -33,7 +33,7 @@ class Hikes extends Database
     {
         try {
             return $this->query(
-                'SELECT hid, name, distance FROM `hikes` order by hid DESC LIMIT 1'
+                'SELECT hid, name, distance, description FROM `hikes` order by hid DESC LIMIT 1'
             )->fetch();
 
         } catch (Exception $e) {
