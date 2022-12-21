@@ -74,4 +74,11 @@ class HikesController
         header('location: /');
     }
 
+    public function deleteHike(string $code)
+    {
+        $this->hikeModel->removeHike($code);
+        http_response_code(302);
+        header('location: /');
+    }
+
 }

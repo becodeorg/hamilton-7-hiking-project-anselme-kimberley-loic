@@ -75,4 +75,18 @@ class Hikes extends Database
             throw new Exception('Error during creation of the hike.');
         }
     }
+
+    public function removeHike(string $code)
+    {
+        try {
+            $this->query(
+                "DELETE FROM hikes WHERE hid = ?"
+                [
+                    $code
+                ]
+            );
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+    }
 }
