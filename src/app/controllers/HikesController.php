@@ -79,11 +79,22 @@ class HikesController
         header('location: /');
     }
 
-    public function deleteHike(string $code)
+    public function showDeleteHike(string $code): void
+    {
+        // duplicate ...
+        $hike = $this->hikeModel->find($code);
+        // are you sure ?
+        include 'app/views/layout/head.view.php';
+        include 'app/views/DeleteHike.view.php';
+        include 'app/views/layout/footer.view.php';
+
+    }
+
+    public function deleteHike(string $code): void
     {
         $this->hikeModel->removeHike($code);
         http_response_code(302);
-        header('location: /');
+        header('location: /hikes');
     }
 
 }
