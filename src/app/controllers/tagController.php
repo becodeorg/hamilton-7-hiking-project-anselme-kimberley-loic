@@ -7,7 +7,7 @@ class TagController
     {
         $this->tagModel = new Tags();
     }
-    public function Tag() : void
+    public function showTag() : void
     {
         $Tags = $this->tagModel->findAll();
         include 'app/views/layout/head.view.php';
