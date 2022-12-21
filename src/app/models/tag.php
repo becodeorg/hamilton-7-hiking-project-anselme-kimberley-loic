@@ -1,11 +1,11 @@
 <?php 
 class Tag extends Database
 {
-    public function  allTag() : array|false
+    public function  findTag() : array|false
     {
         try{
             return $this->query('SELECT name FROM `tags`')
-        ->fetchall();
+        ->fetchAll();
         }
     } 
         catch (Exception $e) {
@@ -13,6 +13,6 @@ class Tag extends Database
         return [];
     }
     }
-}
+
 
 ?>
