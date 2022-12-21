@@ -50,6 +50,12 @@ if ($url === 'hikes') {
     $hikesController->index();
 }
 
+if ($url === 'singlehike') {
+    $code = $_GET['code'];
+    $hikesController = new HikesController();
+    $hikesController->show($code);
+}
+
 if ($url === 'logout') {
     $authController  = new AuthController();
     $authController->logout();
