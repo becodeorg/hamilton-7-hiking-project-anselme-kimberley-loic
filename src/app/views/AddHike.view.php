@@ -1,11 +1,11 @@
-<form class="flex flex-col w-6/12 content-center justify-center m" method="post" action="">
+<form class="flex flex-col w-6/12 content-center justify-center m" method="post" action="addhike">
     <div class="mb-6">
-        <label for="nameHike" class="block mb-2 text-sm font-medium text-gray-900">Hike's name :</label>
-        <input type="text" id="nameHike" name="nameHike" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Hike's name :</label>
+        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
     </div>
     <div class="mb-6">
         <label for="distance" class="block mb-2 text-sm font-medium text-gray-900 ">Hike's distance :</label>
-        <input type="number" id="distance" name="distance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
+        <input type="number" step="1" id="distance" name="distance" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
     </div>
     <div class="mb-6">
         <label for="duration" class="block mb-2 text-sm font-medium text-gray-900 ">Hike's duration :</label>

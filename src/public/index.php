@@ -59,6 +59,13 @@ if ($url === 'logout') {
 if ($url === "addhike") {
 
     $hikesController = new HikesController();
-    $hikesController->showAddHike();
+
+    if ($method === 'GET') {
+        $hikesController->showAddHike();
+    }
+
+    if ($method === 'POST') {
+        $hikesController->addHike($_POST);
+    }
 
 }

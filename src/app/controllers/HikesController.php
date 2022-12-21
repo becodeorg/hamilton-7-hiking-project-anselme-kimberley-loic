@@ -53,4 +53,25 @@ class HikesController
         include 'app/views/AddHike.view.php';
         include 'app/views/layout/footer.view.php';
     }
+
+    public function addHike(array $input): void
+    {
+        if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
+            throw new Exception('Form data not validated.');
+        }
+        // Sanitize input
+        $name = htmlspecialchars($input['name']);
+        $distance = $input['distance'];
+        $duration = $input['duration'];
+        $elevationGain = $input['elevationGain'];
+        $description = htmlspecialchars($input['description']);
+        $userId = $_SESSION['user']['uid'];
+
+
+        $this->hikeModel->createHike($name, $distance, $duration, $elevationGain, $description, $userId);
+
+        http_response_code(302);
+        header('location: /');
+    }
+
 }
