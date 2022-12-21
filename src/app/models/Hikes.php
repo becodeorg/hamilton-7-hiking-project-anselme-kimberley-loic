@@ -5,7 +5,7 @@ class Hikes extends Database
     {
         try {
             return $this->query(
-                'SELECT hid, name FROM hikes LIMIT 40'
+                'SELECT hi.hid, hi.name, us.nickname, DATE_FORMAT(hi.dateHike, "%d %M %Y") as dateHike, hi.description FROM hikes hi LEFT JOIN users us ON hi.userId = us.uid LIMIT 40'
             )->fetchAll();
 
         } catch (Exception $e) {

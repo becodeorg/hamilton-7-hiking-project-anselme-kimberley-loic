@@ -46,9 +46,8 @@ if ($url === 'registration') {
 }
 
 if ($url === 'hikes') {
-    $code = $_GET['code'];
     $hikesController = new HikesController();
-    $hikesController->show($code);
+    $hikesController->index();
 }
 
 if ($url === 'logout') {

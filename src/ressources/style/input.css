@@ -21,5 +21,30 @@
     border-radius: 10px;
 }
 
+.hike_preview-description{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+@media (min-width: 768px) {
+    .lottie-mountain {
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .lottie-mountain lottie-player {
+        width: 80%;
+    }
+}
+
+
+
+
 @tailwind components;
 @tailwind utilities;

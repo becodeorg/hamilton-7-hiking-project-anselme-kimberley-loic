@@ -1,5 +1,25 @@
-<lottie-player class="hidden md:block" src="https://assets2.lottiefiles.com/packages/lf20_SwKPCDD0fy.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player><body>
-<a href="#" class="block max-w-sm p-6 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-900">Hike</h5>
-    <p class="font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-</a>
+<body>
+<div class="lottie-mountain">
+    <lottie-player class="justify-center" src="./assets/images/lf30_editor_rm4y2yra.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
+</div>
+<div class="flex-col items-center justify-center">
+<?php foreach ($hikes as $hike) : ?>
+<div class="hike relative font-medium flex items-center content-center">
+    <div class="mr-auto ml-auto w-full px-6 py-8">
+        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+            <div class="md:flex">
+                <div class="top md:flex-shrink-0">
+                    <img class="image" />
+                </div>
+                <div class="p-8">
+                    <h5 class="uppercase tracking-wide text-brown-hike text-sm font-semibold">Hike</h5>
+                    <a href="/hikes?code=<?= $hike['hid']; ?>" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"><?php echo $hike['name'] ?></a>
+                    <p class="hike_preview-description mt-2 text-gray-500"><?= $hike['description'] ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+</div>
+<script src="scripts/arrayImage.js" defer></script>
