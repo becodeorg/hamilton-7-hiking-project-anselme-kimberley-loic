@@ -1,3 +1,51 @@
 @tailwind base;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #91563B transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #91563B;
+    border: 5px solid transparent;
+    border-radius: 10px;
+}
+
+.hike_preview-description{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+@media (min-width: 768px) {
+    .lottie-mountain {
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .lottie-mountain lottie-player {
+        width: 80%;
+    }
+}
+
+
+
+
 @tailwind components;
 @tailwind utilities;
