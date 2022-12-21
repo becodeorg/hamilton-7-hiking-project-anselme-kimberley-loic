@@ -12,11 +12,16 @@ class HikesController
 
     public function index(): void
     {
-        $products = $this->hikeModel->findAll();
-
+        $hikes = $this->hikeModel->findAll();
         include 'app/views/layout/head.view.php';
         include 'app/views/Hikes.view.php';
         include 'app/views/layout/footer.view.php';
+
+        /*for ($x = 0; $x <= sizeof($hikes); $x++) {
+            if(is_null($hikes[$x]['nickname'])) {
+                $hikes[$x]['nickname'] = "Deleted User";
+            }
+        }*/
     }
 
     public function show(string $code): void
