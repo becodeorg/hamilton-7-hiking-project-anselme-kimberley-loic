@@ -18,7 +18,7 @@ class Hikes extends Database
     {
         try {
             return $this->query(
-                "SELECT hid, name, duration, distance, updateGain FROM hikes WHERE name = ?",
+                'SELECT hi.hid, hi.name, duration, distance, elevationGain, description, DATE_FORMAT(hi.update, "%d %M %Y") as dateUpdate  FROM hikes hi WHERE hid = ?',
                 [
                     $code
                 ]
