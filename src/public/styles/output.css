@@ -909,6 +909,16 @@ video {
 
 .p-6 {
   padding: 1.5rem;
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .p-4 {
@@ -1032,6 +1042,26 @@ video {
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+
+  
+.text-transparent {
+  color: transparent;
+}
+
+.text-brown-hike {
+  --tw-text-opacity: 1;
+  color: rgb(145 86 59 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+
 }
 
 .text-gray-700 {
