@@ -7,11 +7,9 @@ class Hikes extends Database
             return $this->query(
                 'SELECT hi.hid, hi.name, hi.distance, us.nickname, DATE_FORMAT(hi.dateHike, "%d %M %Y") as dateHike, hi.description FROM hikes hi LEFT JOIN users us ON hi.userId = us.uid LIMIT 40'
             )->fetchAll();
-
         } catch (Exception $e) {
             echo $e->getMessage();
-            return [];
-        }
+        }return [];
     }
 
     // find the 5 longest (by distance) hikes

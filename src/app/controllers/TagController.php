@@ -5,10 +5,10 @@ class TagController
 {
     private Tags $tagModel;
 
-    public function __construct()
-    {
-        $this->tagModel = new Hikes();
+    public function __construct() {
+        $this->tagModel = new Tags();
     }
-
-
+    public function listTags(): void {
+        $this->tagModel->findTags();
+    }
 }
