@@ -36,6 +36,7 @@ class AuthController
             'nickname' => $nickname,
             'email' => $email
         ];
+        //mail($email, "Welcome to HIKING", "You have successfully signed up!");
 
         http_response_code(302);
         header('location: /');

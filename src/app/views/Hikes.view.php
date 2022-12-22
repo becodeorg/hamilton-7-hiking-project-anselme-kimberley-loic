@@ -5,7 +5,7 @@
         </a>
     </div>
 <?php endif; ?>
-<div class="lottie-mountain">
+<div class="lottie-mountain mb-4">
     <lottie-player class="justify-center" src="./assets/images/lf30_editor_rm4y2yra.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
 </div>
 <div class="flex-col items-center justify-center">

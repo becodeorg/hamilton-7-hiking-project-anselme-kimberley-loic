@@ -107,4 +107,23 @@ class Hikes extends Database
             return [];
         }
     }
+    public function updatingHike(string $name, string $distance, string $duration, string $elevationGain, string $description, string $update, string $hid): void
+    {
+        if (!$this->query(
+            "Update hikes hi set name = ? ,distance = ?, duration = ?, elevationGain = ?, description = ?, hi.update = ? WHERE hid = ?",
+            [
+                $name,
+                $distance,
+                $duration,
+                $elevationGain,
+                $description,
+                $update,
+                $hid
+            ]
+        )) {
+            throw new Exception('Error during the update of the hike.');
+        }
+    }
+
+
 }
