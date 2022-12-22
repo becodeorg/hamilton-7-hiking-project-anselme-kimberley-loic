@@ -4,6 +4,7 @@
 </div>
 
 <?php else: ?>
+<p class="text-2xl text-brown-hike text-center font-semibold">Your hikes : </p>
 <?php endif ?>
 <div class="flex-col items-center justify-center">
     <?php foreach ($hikes as $hike) : ?>
