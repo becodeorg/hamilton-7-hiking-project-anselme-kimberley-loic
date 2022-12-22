@@ -78,7 +78,7 @@ class Hikes extends Database
         }
     }
 
-    public function removeHike(string $code): array|false
+    public function removeHike(string $code): void
     {
         try {
             $this->query(
@@ -87,6 +87,21 @@ class Hikes extends Database
                     $code
                 ]
             )->fetch();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function findMyHikes(int $uid)
+    {
+        try {
+            return $this->query(
+                'SELECT hi.hid, hi.name, duration, distance, elevationGain, description, DATE_FORMAT(hi.update, "%d %M %Y") as dateUpdate  FROM hikes hi WHERE userId = ?',
+                [
+                    $uid
+                ]
+            )->fetchAll();
+
         } catch (Exception $e) {
             echo $e->getMessage();
             return [];

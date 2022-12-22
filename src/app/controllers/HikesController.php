@@ -97,4 +97,12 @@ class HikesController
         header('location: /hikes');
     }
 
+    public function showMyHikes(int $uid)
+    {
+        $hikes = $this->hikeModel->findMyHikes($uid);
+        include 'app/views/layout/head.view.php';
+        include 'app/views/MyHikes.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+
 }

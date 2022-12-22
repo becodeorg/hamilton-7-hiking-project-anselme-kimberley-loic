@@ -75,3 +75,9 @@ if ($url === "deletinghike") {
     $hikesController = new HikesController();
     $hikesController->deleteHike($code);
 }
+
+if ($url === "myhikes") {
+    $uid = $_SESSION['user']['uid'];
+    $hikesController = new HikesController();
+    $hikesController->showMyHikes($uid);
+}
