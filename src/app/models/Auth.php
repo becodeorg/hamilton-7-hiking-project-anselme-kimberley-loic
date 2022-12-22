@@ -16,6 +16,7 @@ class Auth extends Database
         )) {
             throw new Exception('Error during registration.');
         }
+
     }
 
     public function find(string $nickname): array
