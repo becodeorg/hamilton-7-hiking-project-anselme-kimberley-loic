@@ -97,4 +97,34 @@ class HikesController
         header('location: /hikes');
     }
 
+    public function showUpdateHike(string $code): void
+    {
+        $hike = $this->hikeModel->find($code);
+        // are you sure ?
+        include 'app/views/layout/head.view.php';
+        include 'app/views/UpdateHike.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+    public function updateHike(array $input): void
+    {
+
+        if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
+            throw new Exception('Form data not validated.');
+        }
+
+        $name = htmlspecialchars($input['name']);
+        $distance = $input['distance'];
+        $duration = $input['duration'];
+        $elevationGain = $input['elevationGain'];
+        $description = htmlspecialchars($input['description']);
+        $hid = $_GET['code'];
+        $update = date('Y-m-d H:i:s');
+
+
+        $this->hikeModel->updatingHike($name, $distance, $duration, $elevationGain, $description, $update ,$hid);
+
+        http_response_code(302);
+        header('location: /hikes');
+    }
+
 }

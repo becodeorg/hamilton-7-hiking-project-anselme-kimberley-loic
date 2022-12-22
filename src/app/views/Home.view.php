@@ -1,4 +1,4 @@
-<div class="lottie-mountain mb-6">
+<div class="lottie-mountain mb-4">
     <lottie-player class="justify-center" src="./assets/images/lf30_editor_xbszatmf.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
 </div>
 <h3 class="text-4xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-brown-hike">The last hike added :</h3>

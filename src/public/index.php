@@ -28,8 +28,6 @@ if ($url === 'login') {
     if ($method === 'POST') {
         $authController->login($_POST);
     }
-    var_dump($_POST);
-
 }
 
 if ($url === 'registration') {
@@ -71,6 +69,21 @@ if ($url === "addhike") {
 
     if ($method === 'POST') {
         $hikesController->addHike($_POST);
+    }
+
+}
+
+if ($url === "updatehike") {
+    $code = $_GET['code'];
+    $hikesController = new HikesController();
+
+    if ($method === 'GET') {
+
+        $hikesController->showUpdateHike($code);
+    }
+
+    if ($method === 'POST') {
+        $hikesController->updateHike($_POST);
     }
 
 }
