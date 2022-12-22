@@ -17,8 +17,12 @@
         <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="email@example.com" required>
     </div>
     <div class="mb-6">
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Your Password</label>
-        <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Password" required>
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Your Password <p class="text-xs text-gray-500">(must contain 6 or more characters with at least one number)</p></label>
+        <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" />
+    </div>
+    <div class="mb-6">
+        <label for="password_confirm" class="block mb-2 text-sm font-medium text-gray-900 ">Password confirmation</label>
+        <input type="password" id="password_confirm" name="password_confirm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Password confirmation" required minlength="6">
     </div>
     <button type="submit" class="text-white bg-brown-hike hover:bg-[#663c29] font-medium rounded-lg text-sm w-full sm:w-[200px] sm:mx-auto px-5 py-2.5 text-center">Register</button>
 </form>

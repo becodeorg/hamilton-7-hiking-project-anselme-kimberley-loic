@@ -81,3 +81,21 @@ if ($url === "myhikes") {
     $hikesController = new HikesController();
     $hikesController->showMyHikes($uid);
 }
+
+if ($url === "profil") {
+    $uid = $_SESSION['user']['uid'];
+    $authController = new AuthController();
+    $authController->showProfil($uid);
+}
+
+if ($url === "updateprofil") {
+    $uid = $_SESSION['user']['uid'];
+
+        $authController = new AuthController();
+        if ($method === 'GET') {
+            $authController->showUpdateProfil($uid);
+        }
+        if ($method === 'POST') {
+            $authController->updateProfil($_POST);
+        }
+}
