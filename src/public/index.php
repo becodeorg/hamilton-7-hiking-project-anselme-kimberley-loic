@@ -20,11 +20,9 @@ if ($url === '/' || $url === '') {
 
 if ($url === 'login') {
     $authController = new AuthController();
-
     if ($method === 'GET') {
         $authController->showLoginForm();
     }
-
     if ($method === 'POST') {
         $authController->login($_POST);
     }
@@ -32,15 +30,12 @@ if ($url === 'login') {
 
 if ($url === 'registration') {
     $authController = new AuthController();
-
     if ($method === 'GET') {
         $authController->showRegistrationForm();
     }
-
     if ($method === 'POST') {
         $authController->register($_POST);
     }
-
 }
 
 if ($url === 'hikes') {
@@ -60,17 +55,13 @@ if ($url === 'logout') {
 }
 
 if ($url === "addhike") {
-
     $hikesController = new HikesController();
-
     if ($method === 'GET') {
         $hikesController->showAddHike();
     }
-
     if ($method === 'POST') {
         $hikesController->addHike($_POST);
     }
-
 }
 
 if ($url === "updatehike") {
@@ -98,4 +89,28 @@ if ($url === "deletinghike") {
     $code = $_GET['code'];
     $hikesController = new HikesController();
     $hikesController->deleteHike($code);
+}
+
+if ($url === "myhikes") {
+    $uid = $_SESSION['user']['uid'];
+    $hikesController = new HikesController();
+    $hikesController->showMyHikes($uid);
+}
+
+if ($url === "profil") {
+    $uid = $_SESSION['user']['uid'];
+    $authController = new AuthController();
+    $authController->showProfil($uid);
+}
+
+if ($url === "updateprofil") {
+    $uid = $_SESSION['user']['uid'];
+
+        $authController = new AuthController();
+        if ($method === 'GET') {
+            $authController->showUpdateProfil($uid);
+        }
+        if ($method === 'POST') {
+            $authController->updateProfil($_POST);
+        }
 }

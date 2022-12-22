@@ -17,6 +17,10 @@ class AuthController
             throw new Exception('Form data not validated.');
         }
 
+        if ($input['password'] !== $input['password_confirm']) {
+            throw new Exception("Password must match");
+        }
+
         $nickname = htmlspecialchars($input['nickname']);
         $firstname = htmlspecialchars($input['firstname']);
         $lastname = htmlspecialchars($input['lastname']);
@@ -82,7 +86,45 @@ class AuthController
     public function logout(): void
     {
         unset($_SESSION['user']);
+        header('location: /');
+    }
 
-        //header('location: /');
+    public function showProfil(int $uid): void
+    {
+        $user = $this->authModel->findId($uid);
+        include 'app/views/layout/head.view.php';
+        include 'app/views/Profil.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+
+    public function showUpdateProfil(int $uid): void
+    {
+        $user = $this->authModel->findId($uid);
+        include 'app/views/layout/head.view.php';
+        include 'app/views/UpdateProfil.view.php';
+        include 'app/views/layout/footer.view.php';
+    }
+    public function updateProfil(array $input): void
+    {
+        if (empty($input['nickname']) || empty($input['email']) || empty($input['firstname']) || empty($input['lastname']) || empty($input['password'])) {
+            throw new Exception("Form data not validated");
+        }
+        if ($input['password'] !== $input['password_confirm']) {
+            throw new Exception("Password must match");
+        }
+
+        $uid = $_SESSION['user']['uid'];
+        $nickname = htmlspecialchars($input['nickname']);
+        $firstname = htmlspecialchars($input['firstname']);
+        $lastname = htmlspecialchars($input['lastname']);
+        $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
+        $password = password_hash($input['password'], PASSWORD_DEFAULT);
+
+        $this->authModel->update($uid, $email, $nickname, $firstname, $lastname, $password);
+
+
+        http_response_code(302);
+        header('location: /profil');
+
     }
 }
