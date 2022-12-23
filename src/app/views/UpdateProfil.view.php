@@ -31,5 +31,3 @@
         </div>
     </form>
 </div>
-
-<?php var_dump($user);
