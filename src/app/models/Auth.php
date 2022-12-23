@@ -15,7 +15,9 @@ class Auth extends Database
             ]
         )) {
             throw new Exception('Error during registration.');
-        }
+        } /*catch(Exception $e) {
+        echo $e->getMessage();
+        }*/
     }
 
     public function find(string $nickname): array
@@ -27,7 +29,9 @@ class Auth extends Database
             ]
         )->fetch()) {
             throw new Exception('Failed login attempt : connection error.');
-        }
+        } /*catch(Exception $e) {
+            echo $e->getMessage();
+        }*/
         return $user;
     }
 }
