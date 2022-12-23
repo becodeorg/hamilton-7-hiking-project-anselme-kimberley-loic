@@ -28,20 +28,20 @@
 
 <h3 class="text-4xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brown-hike to-blue-800">The 4 longest hikes :</h3>
 <ul class="md:grid grid-cols-2 w-4/5 ml-auto mr-auto">
-    <?php foreach ($products as $product) : ?>
+    <?php foreach ($hikes as $hike) : ?>
         <li class="justify-items-center">
             <div class="hike relative font-medium flex items-center content-center">
                 <div class="mr-auto ml-auto w-full px-6 py-8">
                     <div class="md:max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-2xl transition-all">
-                        <a href="/singlehike?code=<?= $product['hid']; ?>"
+                        <a href="/singlehike?code=<?= $hike['hid']; ?>"
                             <div class="md:flex">
                                 <div class="top md:flex-shrink-0">
                                     <img class="image" />
                                 </div>
                                 <div class="p-8">
                                     <h5 class="uppercase tracking-wide text-brown-hike text-sm font-semibold">Hike</h5>
-                                    <p class="block mt-2 text-lg leading-tight font-medium text-black"><?php echo $product['name'] . ' / '. $product['distance'] .'km' ?></p>
-                                    <p class="hike_preview-description mt-2 text-gray-500"><?= $product['description'] ?></p>
+                                    <p class="block mt-2 text-lg leading-tight font-medium text-black"><?php echo $hike['name'] . ' / '. $hike['distance'] .'km' ?></p>
+                                    <p class="hike_preview-description mt-2 text-gray-500"><?= $hike['description'] ?></p>
                                 </div>
                             </div>
                         </a>
