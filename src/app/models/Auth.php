@@ -16,6 +16,7 @@ class Auth extends Database
         )) {
             throw new Exception('Error during registration.');
         }
+
     }
 
     public function find(string $nickname): array
@@ -29,5 +30,35 @@ class Auth extends Database
             throw new Exception('Failed login attempt : connection error.');
         }
         return $user;
+    }
+
+    public function findId(int $uid): array
+    {
+        if (!$user = $this->query(
+            "SELECT * FROM users WHERE uid = ?",
+            [
+                $uid,
+            ]
+        )->fetch()) {
+            throw new Exception('Failed login attempt : connection error.');
+        }
+        return $user;
+    }
+
+    public function update(int $uid, string $email, string $nickname, string $firstname, string $lastname, string $password): void
+    {
+        if (!$this->query(
+            "UPDATE `users` SET email = ? , nickname = ? , firstName = ? , lastName = ?, password = ? WHERE uid = ?",
+            [
+                $email,
+                $nickname,
+                $firstname,
+                $lastname,
+                $password,
+                $uid
+            ]
+        )) {
+            throw new Exception('Error during updating profil.');
+        }
     }
 }

@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>HIKING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <link href="/styles/output.css" type="text/css" rel="stylesheet">
+    <link href="styles/output.css" type="text/css" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="#" class="flex items-center z-10">
+        <a href="/" class="flex items-center z-10">
             <img src="assets/images/montagne.png" class="h-6 mr-3 sm:h-9" alt="Logo" />
             <span class="self-center text-xl font-semibold whitespace-nowrap">HIKING</span>
         </a>
@@ -32,7 +32,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                 </div>
-                <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search...">
+                <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search...">
             </div>
             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                 <li>
@@ -41,12 +41,25 @@
                 <li>
                     <a href="/hikes" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Hikes</a>
                 </li>
+                <?php if (empty($_SESSION['user'])): ?>
                 <li>
                     <a href="/login" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Login</a>
                 </li>
+                <?php else: ?>
+                    <li>
+                        <a href="/myhikes" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">My Hikes</a>
+                    </li>
+                    <li>
+                        <a href="/profil" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">My Profil</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="block py-2 pl-3 pr-4 text-center rounded text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:p-0 hover:text-brown-hike">Logout</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
+<body>
 
 <script src="scripts/navbar.js" defer></script>
