@@ -59,7 +59,8 @@ class Hikes extends Database
     }
 
     // add hike
-    public function createHike(string $name, string $distance, string $duration, string $elevationGain, string $description, int $userId) {
+    public function createHike(string $name, string $distance, string $duration, string $elevationGain, string $description, int $userId, $tagName) {
+        $this->query('SET foreign_key_checks = 0');
         if (!$this->query(
             "INSERT INTO hikes(name, dateHike, distance, duration, elevationGain, description, userId) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [
@@ -74,6 +75,16 @@ class Hikes extends Database
         )) {
             throw new Exception('Error during creation of the hike.');
         }
+        $hikeId = $this->query("SELECT hid FROM hikes WHERE name = ?", [$name])->fetch();
+        $tagId = $this->query("SELECT tid FROM tags WHERE name = ?", [$tagName])->fetch();
+        var_dump($hikeId);
+        var_dump($tagId);
+        $this->query("INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)", [
+
+                $hikeId["hid"],
+                $tagId["tid"]
+            ]
+        );
     }
 
     public function removeHike(string $code): void
@@ -120,6 +131,36 @@ class Hikes extends Database
             ]
         )) {
             throw new Exception('Error during the update of the hike.');
+        }
+    }
+
+    public function addTagHike($hikeId, $tagId): void
+    {
+        if (!$this->query(
+            "INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)",
+            [
+                $hikeId,
+                $tagId,
+            ]
+        )) {
+            throw new Exception('Error during the add of an hike');
+        }
+    }
+
+    public function getIdHike(string $name): int|false
+    {
+        try {
+            return $this->query(
+
+                'SELECT hid FROM hikes WHERE name = ?',
+                [
+                    $name
+                ]
+            )->fetch();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return [];
         }
     }
 

@@ -8,7 +8,9 @@ class TagController
     public function __construct() {
         $this->tagModel = new Tags();
     }
-    public function listTags(): void {
-        $this->tagModel->findTags();
+    public function listTags(): array
+    {
+        return $this->tagModel->findTags();
     }
+
 }

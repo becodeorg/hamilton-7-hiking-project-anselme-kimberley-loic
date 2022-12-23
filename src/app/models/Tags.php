@@ -12,6 +12,8 @@ class Tags extends Database
         } return [];
     }
 
+
+
     public function findPopularTag() : array|false
     {
         try{
@@ -37,21 +39,5 @@ class Tags extends Database
         }return[];
     }
 
-    //Add tag in hike's table
 
-    /**
-     * @throws Exception
-     */
-    public function addTagHike($hikeId, $tagId)
-    {
-        if (!$this->query(
-            "INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)",
-            [
-                $hikeId,
-                $tagId,
-            ]
-        )) {
-            throw new Exception('Error during the add of an hike');
-        }
-    }
 }

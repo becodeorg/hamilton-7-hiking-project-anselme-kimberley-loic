@@ -56,16 +56,16 @@ if ($url === 'logout') {
 
 if ($url === "addhike") {
     $hikesController = new HikesController();
-    $tagsController = new TagController();
+    //$tagsController = new TagController();
+
 
     if ($method === 'GET') {
         $hikesController->showAddHike();
-        var_dump($tagsController->listTags());
-        die();
-        $tagsController->listTags();
     }
     if ($method === 'POST') {
         $hikesController->addHike($_POST);
+        //$hikesController->relationTag('25', $_POST['tid']);
+
     }
 }
 
