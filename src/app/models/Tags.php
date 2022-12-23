@@ -1,16 +1,18 @@
 <?php
-
-class Tag extends Database
+class Tags extends Database
 {
-    public function  findTag() : array|false
+    public function findTags(): array|false
     {
         try{
-            return $this->query('SELECT * FROM `tags`')
-                ->fetchAll();
+            return $this->query(
+                'SELECT name, tid FROM tags'
+            )->fetchAll();
         } catch (Exception $e) {
             echo $e->getMessage();
-        }return [];
+        } return [];
     }
+
+
 
     public function findPopularTag() : array|false
     {
@@ -26,7 +28,7 @@ class Tag extends Database
         }return [];
     }
 
-    // Get the tag of an hike from the id of a tag
+    // Get the tag of a hike from the id of a tag
     public function getTagByHike(): array
     {
         try {
@@ -37,17 +39,5 @@ class Tag extends Database
         }return[];
     }
 
-    //Add tag in hike's table
-    public function addTagHike($hikeId, $tagId)
-    {
-        if (!$this->query(
-            "INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)",
-            [
-                $hikeId,
-                $tagId,
-            ]
-        )) {
-            throw new Exception('Error during the add of an hike');
-        }
-    }
+
 }

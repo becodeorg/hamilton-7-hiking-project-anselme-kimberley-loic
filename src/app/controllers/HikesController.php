@@ -56,10 +56,12 @@ class HikesController
     // showAddHike
     public function showAddHike(): void
     {
-
+        $tagsController = new TagController();
+        $tags = $tagsController->listTags();
         include 'app/views/layout/head.view.php';
         include 'app/views/AddHike.view.php';
         include 'app/views/layout/footer.view.php';
+
     }
 
     public function addHike(array $input): void
@@ -78,12 +80,13 @@ class HikesController
         $elevationGain = $input['elevationGain'];
         $description = htmlspecialchars($input['description']);
         $userId = $_SESSION['user']['uid'];
+        $tagName = htmlspecialchars($input["tags"]);
 
-
-        $this->hikeModel->createHike($name, $distance, $duration, $elevationGain, $description, $userId);
+        $this->hikeModel->createHike($name, $distance, $duration, $elevationGain, $description, $userId, $tagName);
 
         http_response_code(302);
         header('location: /');
+
     }
 
     public function showDeleteHike(string $code, int $uid): void
@@ -151,8 +154,21 @@ class HikesController
 
         $this->hikeModel->updatingHike($name, $distance, $duration, $elevationGain, $description, $update ,$hid);
 
-        http_response_code(302);
-        header('location: /hikes');
+
+    }
+
+    public function relationTag(string $hikeId, string $tagId): void {
+
+        $this->hikeModel->addTagHike($hikeId, $tagId);
+
+    }
+
+    public function idHike(string $name)
+    {
+        $name = htmlspecialchars($name);
+        return $this->hikeModel->getIdHike($name);
+
+
     }
 
 }

@@ -7,11 +7,9 @@ class Hikes extends Database
             return $this->query(
                 'SELECT hi.hid, hi.name, hi.distance, us.nickname, DATE_FORMAT(hi.dateHike, "%d %M %Y") as dateHike, hi.description FROM hikes hi LEFT JOIN users us ON hi.userId = us.uid LIMIT 40'
             )->fetchAll();
-
         } catch (Exception $e) {
             echo $e->getMessage();
-            return [];
-        }
+        }return [];
     }
 
     // find the 5 longest (by distance) hikes
@@ -61,6 +59,7 @@ class Hikes extends Database
     }
 
     // add hike
+
     public function createHike(string $name, string $distance, string $duration, string $elevationGain, string $description, int $userId)
     {
         try {
@@ -81,6 +80,16 @@ class Hikes extends Database
         } catch (Exception $e){
             echo $e->getMessage();
         }
+        $hikeId = $this->query("SELECT hid FROM hikes WHERE name = ?", [$name])->fetch();
+        $tagId = $this->query("SELECT tid FROM tags WHERE name = ?", [$tagName])->fetch();
+        var_dump($hikeId);
+        var_dump($tagId);
+        $this->query("INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)", [
+
+                $hikeId["hid"],
+                $tagId["tid"]
+            ]
+        );
     }
 
     public function removeHike(string $code): void
@@ -127,6 +136,36 @@ class Hikes extends Database
             ]
         )) {
             throw new Exception('Error during the update of the hike.');
+        }
+    }
+
+    public function addTagHike($hikeId, $tagId): void
+    {
+        if (!$this->query(
+            "INSERT INTO hikeTag(hikeId, tagId) VALUES (?,?)",
+            [
+                $hikeId,
+                $tagId,
+            ]
+        )) {
+            throw new Exception('Error during the add of an hike');
+        }
+    }
+
+    public function getIdHike(string $name): int|false
+    {
+        try {
+            return $this->query(
+
+                'SELECT hid FROM hikes WHERE name = ?',
+                [
+                    $name
+                ]
+            )->fetch();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return [];
         }
     }
 
