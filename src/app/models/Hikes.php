@@ -88,7 +88,42 @@ class Hikes extends Database
                 ]
             )->fetch();
         } catch (Exception $e) {
-            $e->getMessage();
+            echo $e->getMessage();
         }
     }
+
+    public function findMyHikes(int $uid)
+    {
+        try {
+            return $this->query(
+                'SELECT hi.hid, hi.name, duration, distance, elevationGain, description, DATE_FORMAT(hi.update, "%d %M %Y") as dateUpdate  FROM hikes hi WHERE userId = ?',
+                [
+                    $uid
+                ]
+            )->fetchAll();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return [];
+        }
+    }
+    public function updatingHike(string $name, string $distance, string $duration, string $elevationGain, string $description, string $update, string $hid): void
+    {
+        if (!$this->query(
+            "Update hikes hi set name = ? ,distance = ?, duration = ?, elevationGain = ?, description = ?, hi.update = ? WHERE hid = ?",
+            [
+                $name,
+                $distance,
+                $duration,
+                $elevationGain,
+                $description,
+                $update,
+                $hid
+            ]
+        )) {
+            throw new Exception('Error during the update of the hike.');
+        }
+    }
+
+
 }
