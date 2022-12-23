@@ -47,7 +47,7 @@ class Hikes extends Database
         try {
             return $this->query(
 
-                'SELECT hi.hid, hi.name, duration, distance, elevationGain, description, DATE_FORMAT(hi.update, "%d %M %Y") as dateUpdate  FROM hikes hi WHERE hid = ?',
+                'SELECT hi.hid, hi.name, duration, distance, elevationGain, description, DATE_FORMAT(hi.update, "%d %M %Y") as dateUpdate, userId  FROM hikes hi WHERE hid = ?',
 
                 [
                     $code
@@ -61,20 +61,25 @@ class Hikes extends Database
     }
 
     // add hike
-    public function createHike(string $name, string $distance, string $duration, string $elevationGain, string $description, int $userId) {
-        if (!$this->query(
-            "INSERT INTO hikes(name, dateHike, distance, duration, elevationGain, description, userId) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            [
-                $name,
-                date("Y-m-d H:i:s"),
-                $distance,
-                $duration,
-                $elevationGain,
-                $description,
-                $userId
-            ]
-        )) {
-            throw new Exception('Error during creation of the hike.');
+    public function createHike(string $name, string $distance, string $duration, string $elevationGain, string $description, int $userId)
+    {
+        try {
+            if (!$this->query(
+                "INSERT INTO hikes(name, dateHike, distance, duration, elevationGain, description, userId) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [
+                    $name,
+                    date("Y-m-d H:i:s"),
+                    $distance,
+                    $duration,
+                    $elevationGain,
+                    $description,
+                    $userId
+                ]
+            )) {
+                throw new Exception('Error during creation of the hike.');
+            }
+        } catch (Exception $e){
+            echo $e->getMessage();
         }
     }
 

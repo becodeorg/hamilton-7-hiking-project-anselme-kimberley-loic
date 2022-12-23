@@ -66,29 +66,51 @@ if ($url === "addhike") {
 
 if ($url === "updatehike") {
     $code = $_GET['code'];
+    $uid = $_SESSION['user']['uid'];
     $hikesController = new HikesController();
 
-    if ($method === 'GET') {
-
-        $hikesController->showUpdateHike($code);
+    if (!empty($uid)) {
+        if ($method === 'GET') {
+            $hikesController->showUpdateHike($code, $uid);
+        }
+        if ($method === 'POST') {
+            $hikesController->updateHike($_POST);
+        }
     }
-
-    if ($method === 'POST') {
-        $hikesController->updateHike($_POST);
+    // if the user is not logged in
+    else {
+        echo "You are not logged in";
+        // show 404 maybe ?
     }
 
 }
 
 if ($url === "deletehike") {
     $code = $_GET['code'];
+    $uid = $_SESSION['user']['uid'];
     $hikesController = new HikesController();
-    $hikesController->showDeleteHike($code);
+    if (!empty($uid)) {
+        $hikesController->showDeleteHike($code, $uid);
+    }
+    // if the user is not logged in
+    else {
+        echo "You are not logged in";
+        // show 404 maybe ?
+    }
 }
 
 if ($url === "deletinghike") {
     $code = $_GET['code'];
-    $hikesController = new HikesController();
-    $hikesController->deleteHike($code);
+    $uid = $_SESSION['user']['uid'];
+    if (!empty($uid)) {
+        $hikesController = new HikesController();
+        $hikesController->deleteHike($code, $uid);
+    }
+    // if the user is not logged in
+    else {
+        echo "You are not logged in";
+        // show 404 maybe ?
+    }
 }
 
 if ($url === "myhikes") {

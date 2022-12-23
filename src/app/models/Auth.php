@@ -14,7 +14,11 @@ class Auth extends Database
                 $password
             ]
         )) {
-            throw new Exception('Error during registration.');
+            try {
+                throw new Exception('Failed registration attempt.');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
 
     }
@@ -27,7 +31,11 @@ class Auth extends Database
                 $nickname,
             ]
         )->fetch()) {
-            throw new Exception('Failed login attempt : connection error.');
+            try {
+                throw new Exception('Failed login attempt : connection error (wrong nickname).');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $user;
     }
@@ -40,7 +48,11 @@ class Auth extends Database
                 $uid,
             ]
         )->fetch()) {
-            throw new Exception('Failed login attempt : connection error.');
+            try {
+                throw new Exception('Failed login attempt : connection error (wrong id).');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $user;
     }
@@ -58,7 +70,11 @@ class Auth extends Database
                 $uid
             ]
         )) {
-            throw new Exception('Error during updating profil.');
+            try {
+                throw new Exception('Failed update attempt : connexion error while updating the profil.');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
     }
 }

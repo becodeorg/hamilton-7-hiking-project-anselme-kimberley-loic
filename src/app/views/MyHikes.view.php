@@ -1,11 +1,11 @@
 <?php if (sizeof($hikes) < 1):?>
+<p class="text-2xl text-brown-hike text-center font-medium p-4">You did not add any hike</p>
+<?php else: ?>
+<p class="text-2xl text-brown-hike text-center font-medium underline underline-offset-4">Your hikes : </p>
+<?php endif ?>
 <div class="flex justify-center p-10">
     <a href="/addhike" class="text-2xl text-brown-hike font-semibold">Click here to add a hike</a>
 </div>
-
-<?php else: ?>
-<p class="text-2xl text-brown-hike text-center font-semibold">Your hikes : </p>
-<?php endif ?>
 <div class="flex-col items-center justify-center">
     <?php foreach ($hikes as $hike) : ?>
         <div class="hike relative font-medium flex items-center content-center">
