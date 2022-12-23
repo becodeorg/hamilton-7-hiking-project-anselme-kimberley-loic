@@ -1,18 +1,14 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 class TagController
 {
+    private Tags $tagModel;
+
     public function __construct()
     {
-        $this->tagModel = new Tags();
+        $this->tagModel = new Hikes();
     }
-    public function showTag() : void
-    {
-        $Tags = $this->tagModel->findAll();
-        include 'app/views/layout/head.view.php';
-        include 'app/views/Tags.view.php';
-        include 'app/views/layout/footer.view.php';
-    }    
+
+
 }
-?>
