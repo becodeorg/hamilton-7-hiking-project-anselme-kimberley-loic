@@ -24,11 +24,10 @@ class HikesController
         }*/
     }
 
-
     public function showHome(): void
     {
         // get the 5 longest
-        $products = $this->hikeModel->findLongest();
+        $hikes = $this->hikeModel->findLongest();
         // get the last hike added
         $productLast = $this->hikeModel->findLast();
 
@@ -39,8 +38,12 @@ class HikesController
 
     public function show(string $code): void
     {
-        if (empty($code)) {
-            throw new Exception("Hike code was not provided.");
+        try {
+            if (empty($code)) {
+                throw new Exception("Hike code was not provided.");
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
 
         $hike = $this->hikeModel->find($code);
@@ -61,8 +64,12 @@ class HikesController
 
     public function addHike(array $input): void
     {
-        if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
-            throw new Exception('Form data not validated.');
+        try {
+            if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
+                throw new Exception('Form data not validated.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
         // Sanitize input
         $name = htmlspecialchars($input['name']);
@@ -79,15 +86,19 @@ class HikesController
         header('location: /');
     }
 
-    public function showDeleteHike(string $code): void
+    public function showDeleteHike(string $code, int $uid): void
     {
-        // duplicate ...
         $hike = $this->hikeModel->find($code);
-        // are you sure ?
-        include 'app/views/layout/head.view.php';
-        include 'app/views/DeleteHike.view.php';
-        include 'app/views/layout/footer.view.php';
 
+        if ($uid === $hike['userId']) {
+            include 'app/views/layout/head.view.php';
+            include 'app/views/DeleteHike.view.php';
+            include 'app/views/layout/footer.view.php';
+        } else {
+            include 'app/views/layout/head.view.php';
+            echo 'You did not create this hike';
+            include 'app/views/layout/footer.view.php';
+        }
     }
 
     public function deleteHike(string $code): void
@@ -105,19 +116,29 @@ class HikesController
         include 'app/views/layout/footer.view.php';
     }
 
-    public function showUpdateHike(string $code): void
+    public function showUpdateHike(string $code, int $uid): void
     {
         $hike = $this->hikeModel->find($code);
-        // are you sure ?
-        include 'app/views/layout/head.view.php';
-        include 'app/views/UpdateHike.view.php';
-        include 'app/views/layout/footer.view.php';
+
+        if ($uid === $hike['userId']) {
+            include 'app/views/layout/head.view.php';
+            include 'app/views/UpdateHike.view.php';
+            include 'app/views/layout/footer.view.php';
+        } else {
+            include 'app/views/layout/head.view.php';
+            echo 'You did not create this hike';
+            include 'app/views/layout/footer.view.php';
+        }
     }
     public function updateHike(array $input): void
     {
 
-        if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
-            throw new Exception('Form data not validated.');
+        try {
+            if (empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevationGain']) || empty($input['description'])) {
+                throw new Exception('Form data not validated.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
 
         $name = htmlspecialchars($input['name']);
@@ -127,7 +148,6 @@ class HikesController
         $description = htmlspecialchars($input['description']);
         $hid = $_GET['code'];
         $update = date('Y-m-d H:i:s');
-
 
         $this->hikeModel->updatingHike($name, $distance, $duration, $elevationGain, $description, $update ,$hid);
 

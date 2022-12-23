@@ -13,12 +13,22 @@ class AuthController
 
     public function register(array $input): void
     {
-        if (empty($input['nickname']) || empty($input['email']) || empty($input['password']) || empty($input['firstname']) || empty($input['lastname'])) {
-            throw new Exception('Form data not validated.');
+        try {
+            if (empty($input['nickname']) || empty($input['email']) || empty($input['password']) || empty($input['firstname']) || empty($input['lastname'])) {
+                throw new Exception('Form data not validated.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
-        if ($input['password'] !== $input['password_confirm']) {
-            throw new Exception("Password must match");
+        try {
+            if ($input['password'] !== $input['password_confirm']) {
+                throw new Exception("Password must match");
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         $nickname = htmlspecialchars($input['nickname']);
@@ -51,8 +61,13 @@ class AuthController
 
     public function login(array $input): void
     {
-        if (empty($input) || empty($input['nickname']) || empty($input['password'])) {
-            throw new Exception('Form data not validated.');
+        try {
+            if (empty($input) || empty($input['nickname']) || empty($input['password'])) {
+                throw new Exception('Form data not validated.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         // Sanitize/validate input
@@ -61,8 +76,13 @@ class AuthController
 
         $user = $this->authModel->find($nickname);
 
-        if (!password_verify($password, $user['password'])) {
-            throw new Exception("Failed login attempt : wrong password");
+        try {
+            if (!password_verify($password, $user['password'])) {
+                throw new Exception("Failed login attempt : wrong password");
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         $_SESSION['user'] = [
@@ -106,11 +126,22 @@ class AuthController
     }
     public function updateProfil(array $input): void
     {
-        if (empty($input['nickname']) || empty($input['email']) || empty($input['firstname']) || empty($input['lastname']) || empty($input['password'])) {
-            throw new Exception("Form data not validated");
+        try {
+            if (empty($input['nickname']) || empty($input['email']) || empty($input['password']) || empty($input['firstname']) || empty($input['lastname'])) {
+                throw new Exception('Form data not validated.');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
-        if ($input['password'] !== $input['password_confirm']) {
-            throw new Exception("Password must match");
+
+        try {
+            if ($input['password'] !== $input['password_confirm']) {
+                throw new Exception("Password must match");
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         $uid = $_SESSION['user']['uid'];
